@@ -1,6 +1,5 @@
 # faster-whisper-ollama
 A real-time voice chatbot based on foster whisper and ollama
-Here is a `README.md` file for your script:
 
 ```markdown
 # Local Audio Recording and Transcription
