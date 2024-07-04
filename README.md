@@ -10,11 +10,10 @@ This script provides a local audio recording and transcription service without r
 
 Before running the script, you need to install the following dependencies:
 ```markdown
-```bash
 pip3 install pyaudio webrtcvad faster-whisper
 ```
 
-## Running the Script
+## Running
 
 To run the script, use the following command:
 
@@ -22,7 +21,7 @@ To run the script, use the following command:
 python3 faster_whisper_demo.py
 ```
 
-## Script Overview
+## Overview
 
 This script records audio from the microphone, transcribes it using a local model, and provides real-time transcription services. Below is an overview of the main components:
 
