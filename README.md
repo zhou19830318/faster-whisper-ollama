@@ -1,7 +1,7 @@
 # faster-whisper-ollama
 A real-time voice chatbot based on foster whisper and ollama
 
-```markdown
+
 # Local Audio Recording and Transcription
 
 This script provides a local audio recording and transcription service without relying on cloud services, making it suitable for offline use.
@@ -9,7 +9,7 @@ This script provides a local audio recording and transcription service without r
 ## Dependencies
 
 Before running the script, you need to install the following dependencies:
-
+```markdown
 ```bash
 pip3 install pyaudio webrtcvad faster-whisper
 ```
