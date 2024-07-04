@@ -204,9 +204,9 @@ class Chat(threading.Thread):
         history.append({'role': 'user', 'content': text})
         answer = ''
         try:
-            client = AsyncClient(host='http://124.223.159.146:11434')
+            client = AsyncClient(host='http://124.223.159.146:11434')# replace the host IP with your own ollama serve IP
             message = {'role': 'user', 'content': text}
-            async for part in await client.chat(model='deepseek-coder', messages=history, stream=True):
+            async for part in await client.chat(model='deepseek-coder', messages=history, stream=True):#replace the model your own
                 print(part['message']['content'], end='', flush=True)
                 answer += part['message']['content']
             history.append({'role': 'assistant', 'content': answer})
@@ -228,7 +228,7 @@ class Chat(threading.Thread):
 def main():
     try:
         with AudioRecorder(channels=1, sample_rate=16000) as recorder:
-            with Transcriber(model_size="small") as transcriber:
+            with Transcriber(model_size="small") as transcriber:#model_size：tiny，base，small，medium，large，large-v1，large-v2，large-v3
                 recorder.start()
                 transcriber.start()
                 chat = Chat("")
