@@ -25,6 +25,7 @@ from faster_whisper import WhisperModel
 
 import asyncio
 from ollama import AsyncClient
+import json
 
 # 解决bug问题
 import os
@@ -32,7 +33,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 history = [{
     'role': 'system',
-    'content': 'whenever your name is Conor,and you are a helpful assistant,you are good at coding by python,you always give the right answers step by step!',
+    'content': 'your name is Conor,and you are a helpful assistant,you are good at coding by python,you always give the right answers step by step!',
 }]
 
 logging.basicConfig(level=logging.INFO,
@@ -205,10 +206,12 @@ class Chat(threading.Thread):
         try:
             client = AsyncClient(host='http://124.223.159.146:11434')
             message = {'role': 'user', 'content': text}
-            async for part in await client.chat(model='deepseek-coder', messages=[message], stream=True):
+            async for part in await client.chat(model='deepseek-coder', messages=history, stream=True):
                 print(part['message']['content'], end='', flush=True)
                 answer += part['message']['content']
             history.append({'role': 'assistant', 'content': answer})
+            with open('history.json', 'w') as f:
+                json.dump(history, f)
 
         except Exception as e:
             logging.error("Error during chat communication: %s", e)
@@ -225,7 +228,7 @@ class Chat(threading.Thread):
 def main():
     try:
         with AudioRecorder(channels=1, sample_rate=16000) as recorder:
-            with Transcriber(model_size="base") as transcriber:
+            with Transcriber(model_size="small") as transcriber:
                 recorder.start()
                 transcriber.start()
                 chat = Chat("")
