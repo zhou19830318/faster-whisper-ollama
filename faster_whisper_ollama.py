@@ -6,7 +6,7 @@
     pip3 install pyaudio webrtcvad faster-whisper
 
 运行方式:
-    python3 local_deploy.py
+    python3 faster_whisper_ollama.py
 """
 
 import collections
